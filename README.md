@@ -13,7 +13,8 @@
 | 프레임워크    | [NextJS](https://nextjs.org/)                                                                                                                        |
 | 패키지 매니저 | [npm](https://www.npmjs.com/)                                                                                                                        |
 | 언어          | [Typescript](https://www.typescriptlang.org/)                                                                                                        |
-| 상태관리 라이브러리| [Zustand](https://github.com/pmndrs/zustand)
+| 상태관리 라이브러리| [Zustand](https://github.com/pmndrs/zustand)                                                                                                        |
+| 비동기 통신     | [React Query](https://www.npmjs.com/package/react-query)                                                                                            |
 | 스타일        | [emotion](https://styled-components.com/)                                                                                                            |
 | 테스팅        | [Jest](https://jestjs.io/), [testing-library](https://testing-library.com/docs/react-testing-library/intro/), [Storybook](https://storybook.js.org/) |
 | 서비스워커     | [msw](https://mswjs.io/)                                                                                                                             |
