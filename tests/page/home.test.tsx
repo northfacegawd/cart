@@ -7,7 +7,7 @@ describe('<Home />', () => {
   });
 
   it('renders component', () => {
-    const home = screen.getByText('Next.js!');
+    const home = screen.getByText('Next.js1');
 
     expect(home).toBeInTheDocument();
   });
