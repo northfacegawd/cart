@@ -30,11 +30,23 @@
         "tsx": "never"
       }
     ],
+    "import/prefer-default-export": "off",
+    "react/function-component-definition": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
     "react/jsx-props-no-spreading": "off",
     "react/button-has-type": "warn",
-    "func-names": "off"
+    "func-names": "off",
+    "react/require-default-props": "off"
   },
+  "overrides": [
+    {
+      "files": ["stories/**/*.stories.tsx", "tests/**/*.test.tsx"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "react/react-in-jsx-scope": "off"
+      }
+    }
+  ],
   "settings": {
     "import/resolver": {
       "node": {
