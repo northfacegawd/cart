@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 29CM 프론트엔드 코딩 과제
 
-## Getting Started
+## 개요
 
-First, run the development server:
+29CM 프론트엔드 팀의 채용 프로세스 중 사전 과제에 관한 프로젝트입니다.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## 개발
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 기술 스택
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+| 속성          | 값                                                                                                                                                   |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 프레임워크    | [NextJS](https://nextjs.org/)                                                                                                                        |
+| 패키지 매니저 | [npm](https://www.npmjs.com/)                                                                                                                        |
+| 언어          | [Typescript](https://www.typescriptlang.org/)                                                                                                        |
+| 상태관리 라이브러리| [Zustand](https://github.com/pmndrs/zustand)
+| 스타일        | [emotion](https://styled-components.com/)                                                                                                            |
+| 테스팅        | [Jest](https://jestjs.io/), [testing-library](https://testing-library.com/docs/react-testing-library/intro/), [Storybook](https://storybook.js.org/) |
+| 서비스워커     | [msw](https://mswjs.io/)                                                                                                                             |
+| 코드 퀄리티   | [eslint](https://eslint.org/), [prettier](https://prettier.io/)                                                                                      |
+| 코드 관리     | [git](https://git-scm.com/) & [github](https://www.github.com/)                                                                                      |
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 환경 세팅
 
-## Learn More
+[해당 문서](./INSTALLATION.md) 를 참고한다.
 
-To learn more about Next.js, take a look at the following resources:
+### 컨벤션
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[해당 문서](./CONVENTION.md) 를 참고한다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 담당자
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/northfacegawd">
+            <img
+                src="https://avatars.githubusercontent.com/northfacegawd"
+            width="200px;"
+            />
+            <br />
+            <sub><b>이용준</b></sub>
+        </a>
+        <br />
+        </td>
+    </tr>
+</table>
