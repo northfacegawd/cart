@@ -1,5 +1,13 @@
 import React from 'react';
+
+import styled from '@emotion/styled';
+
 import './button.css';
+
+const StyledButton = styled.button`
+  color: black;
+  background-color: white !important;
+`;
 
 interface ButtonProps {
   /**
@@ -34,15 +42,19 @@ export const Button = ({
   label,
   ...props
 }: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const mode = primary
+    ? 'storybook-button--primary'
+    : 'storybook-button--secondary';
   return (
-    <button
+    <StyledButton
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+      className={['storybook-button', `storybook-button--${size}`, mode].join(
+        ' ',
+      )}
       style={{ backgroundColor }}
       {...props}
     >
       {label}
-    </button>
+    </StyledButton>
   );
 };
