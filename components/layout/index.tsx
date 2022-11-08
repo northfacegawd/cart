@@ -1,9 +1,11 @@
 import React, { PropsWithChildren } from 'react';
 
+import Header from './header';
+
 export default function Layout({ children }: PropsWithChildren) {
   return (
     <>
-      <header />
+      <Header />
       <main>{children}</main>
     </>
   );

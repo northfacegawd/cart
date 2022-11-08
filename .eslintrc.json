@@ -46,7 +46,7 @@
   },
   "overrides": [
     {
-      "files": ["stories/**/*.stories.tsx", "tests/**/*.test.tsx"],
+      "files": ["*/**/*.stories.tsx", "tests/**/*.test.tsx"],
       "rules": {
         "import/no-extraneous-dependencies": "off",
         "react/react-in-jsx-scope": "off"
