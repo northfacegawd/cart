@@ -42,11 +42,12 @@
     "react/jsx-props-no-spreading": "off",
     "react/button-has-type": "warn",
     "func-names": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "jsx-a11y/anchor-is-valid": "off"
   },
   "overrides": [
     {
-      "files": ["stories/**/*.stories.tsx", "tests/**/*.test.tsx"],
+      "files": ["*/**/*.stories.tsx", "tests/**/*.test.tsx"],
       "rules": {
         "import/no-extraneous-dependencies": "off",
         "react/react-in-jsx-scope": "off"

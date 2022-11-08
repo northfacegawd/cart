@@ -2,6 +2,8 @@ import type { AppProps } from 'next/app';
 import React, { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+import Layout from '@components/layout';
+
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -9,7 +11,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </QueryClientProvider>
   );
 }
