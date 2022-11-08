@@ -42,7 +42,8 @@
     "react/jsx-props-no-spreading": "off",
     "react/button-has-type": "warn",
     "func-names": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "jsx-a11y/anchor-is-valid": "off"
   },
   "overrides": [
     {
