@@ -11,16 +11,21 @@ export const GlobalHeader = styled.header`
   left: 0;
   width: 100%;
   box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
+  height: 60px;
 `;
 
-export const HeaderSection = styled.section`
-  padding: 10px 20px;
+export const HeaderWrapper = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
 `;
 
 export const HeaderTopNav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 100%;
 `;
 
 export const HeaderLink = styled.a<HeaderLinkProps>`

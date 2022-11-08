@@ -7,8 +7,8 @@ import ShoppingCart from '@components/icons/shopping-cart';
 import {
   GlobalHeader,
   HeaderLink,
-  HeaderSection,
   HeaderTopNav,
+  HeaderWrapper,
 } from './index.style';
 
 export default function Header() {
@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <GlobalHeader>
-      <HeaderSection>
+      <HeaderWrapper>
         <HeaderTopNav>
           <Link href="/">
             <HeaderLink>29CM</HeaderLink>
@@ -32,7 +32,7 @@ export default function Header() {
             </HeaderLink>
           </Link>
         </HeaderTopNav>
-      </HeaderSection>
+      </HeaderWrapper>
     </GlobalHeader>
   );
 }
