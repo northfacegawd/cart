@@ -19,9 +19,9 @@ export const ImageWrapper = styled.div`
 export const ProductImage = styled(Image)`
   top: 0;
   left: 0;
-  transition-duration: 200ms;
-  transition-property: transform;
-  will-change: transform;
+  transition-duration: 200ms, 400ms;
+  transition-property: transform, opacity;
+  will-change: transform, opacity;
   &:hover {
     transform: scale(1.1);
   }
