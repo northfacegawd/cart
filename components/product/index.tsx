@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import ShoppingCart from '@components/icons/shopping-cart';
 import { Product } from '@models/product.model';
 
 import {

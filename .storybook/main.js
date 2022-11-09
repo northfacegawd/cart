@@ -31,6 +31,7 @@ module.exports = {
       '@hooks': path.resolve(__dirname, '../hooks'),
       '@models': path.resolve(__dirname, '../models'),
       '@styles': path.resolve(__dirname, '../styles'),
+      '@constant': path.resolve(__dirname, '../constant'),
     };
 
     return config;

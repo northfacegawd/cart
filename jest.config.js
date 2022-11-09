@@ -15,6 +15,7 @@ const customJestConfig = {
     '^@mocks/(.*)$': '<rootDir>/mocks/$1',
     '^@styles/(.*)$': '<rootDir>/styles/$1',
     '^@public/(.*)$': '<rootDir>/public/$1',
+    '^@constant/(.*)$': '<rootDir>/constant/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
 };
