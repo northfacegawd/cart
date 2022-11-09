@@ -37,6 +37,12 @@ export const ProductName = styled.span`
   font-size: 1rem;
   line-height: 1.3em;
   color: var(--gray-600);
+  height: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
 
 export const ProductPrice = styled.span`
@@ -47,6 +53,7 @@ export const ProductPrice = styled.span`
 `;
 
 export const CartButton = styled.button`
+  margin-top: auto;
   cursor: pointer;
   width: 100%;
   padding: 1em 0;

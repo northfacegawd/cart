@@ -33,10 +33,8 @@ export default function ProductItem(props: Product) {
         />
       </ImageWrapper>
       <ProductInfo>
-        <ProductName>{item_name}</ProductName>
-        <div className="flex-center">
-          <ProductPrice>{price.toLocaleString()}</ProductPrice>
-        </div>
+        <ProductName title={item_name}>{item_name}</ProductName>
+        <ProductPrice>{price.toLocaleString()}</ProductPrice>
       </ProductInfo>
       <CartButton>장바구니 담기</CartButton>
     </ProductWrapper>
