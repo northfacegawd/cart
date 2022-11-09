@@ -7,7 +7,7 @@ export const getProducts = (type?: 'error') => {
     if (type === 'error') {
       return res(ctx.status(400));
     }
-    return res(ctx.json(PRODUCTS));
+    return res(ctx.json({ data: PRODUCTS }));
   });
 };
 
