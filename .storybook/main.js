@@ -32,6 +32,7 @@ module.exports = {
       '@models': path.resolve(__dirname, '../models'),
       '@styles': path.resolve(__dirname, '../styles'),
       '@constant': path.resolve(__dirname, '../constant'),
+      '@mocks': path.resolve(__dirname, '../mocks'),
     };
 
     return config;
