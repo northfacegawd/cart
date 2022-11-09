@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { numberIntoPrice } from '@lib/utils';
 import { Product } from '@models/product.model';
 
 import {
@@ -34,7 +35,7 @@ export default function ProductItem(props: Product) {
       </ImageWrapper>
       <ProductInfo>
         <ProductName title={item_name}>{item_name}</ProductName>
-        <ProductPrice>{price.toLocaleString()}</ProductPrice>
+        <ProductPrice>{numberIntoPrice(price)}</ProductPrice>
       </ProductInfo>
       <CartButton>장바구니 담기</CartButton>
     </ProductWrapper>
