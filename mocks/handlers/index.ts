@@ -1,3 +1,3 @@
-import * as productsHandlers from '@mocks/handlers/products';
+import products from '@mocks/handlers/products';
 
-export const handlers = [...Object.values(productsHandlers)];
+export const handlers = [...Object.values(products)];

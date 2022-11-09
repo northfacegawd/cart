@@ -1,6 +1,14 @@
-import { PRODUCTS } from 'constant/product';
 import { rest } from 'msw';
 
-export const getProducts = rest.get('/fruits', (req, res, ctx) =>
-  res(ctx.json(PRODUCTS)),
-);
+import { PRODUCTS } from '@constant/product';
+
+export const getProducts = (type?: 'error') => {
+  return rest.get('/api/products', (req, res, ctx) => {
+    if (type === 'error') {
+      return res(ctx.status(400));
+    }
+    return res(ctx.json(PRODUCTS));
+  });
+};
+
+export default [getProducts()];
