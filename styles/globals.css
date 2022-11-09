@@ -21,6 +21,11 @@ a {
   box-sizing: border-box;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 14px;
