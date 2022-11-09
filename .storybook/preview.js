@@ -1,8 +1,14 @@
+import { initializeWorker, mswDecorator } from 'msw-storybook-addon';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import * as NextImage from 'next/image';
 
+import { addDecorator } from '@storybook/react';
+
 // next 12
 import '../styles/globals.css';
+
+initializeWorker();
+addDecorator(mswDecorator);
 
 const OriginalNextImage = NextImage.default;
 
