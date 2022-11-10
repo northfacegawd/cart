@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-interface UserCounterOptions {
+export interface UserCounterOptions {
   min?: number;
   max?: number;
 }
