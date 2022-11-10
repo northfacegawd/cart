@@ -19,10 +19,11 @@ export const CounterButton = styled.button`
   }
 `;
 
-export const CountTextBox = styled.span`
+export const CountInput = styled.input`
   width: 30px;
   height: 30px;
   text-align: center;
   line-height: 30px;
   font-weight: 500;
+  border: none;
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CountTextBox, CounterButton, CounterWrapper } from './index.style';
+import { CountInput, CounterButton, CounterWrapper } from './index.style';
 
 interface CounterProps {
   count: number;
@@ -15,11 +15,20 @@ export default function Counter({
 }: CounterProps) {
   return (
     <CounterWrapper>
-      <CounterButton onClick={onDecrease} disabled={count <= 0} type="button">
+      <CounterButton
+        onClick={onDecrease}
+        disabled={count <= 0}
+        type="button"
+        aria-label="decrease-button"
+      >
         -
       </CounterButton>
-      <CountTextBox>{count}</CountTextBox>
-      <CounterButton onClick={onIncrease} type="button">
+      <CountInput aria-label="count" readOnly value={count} />
+      <CounterButton
+        onClick={onIncrease}
+        type="button"
+        aria-label="increase-button"
+      >
         +
       </CounterButton>
     </CounterWrapper>
