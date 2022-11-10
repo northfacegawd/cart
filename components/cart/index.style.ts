@@ -1,3 +1,4 @@
+import { CheckBoxWrapper } from '@components/common/checkbox/index.style';
 import styled from '@emotion/styled';
 
 export const CartItemWrapper = styled.li`
@@ -5,6 +6,9 @@ export const CartItemWrapper = styled.li`
   align-items: center;
   padding: 1.5em 1em 1.5em 0;
   border-bottom: 1px solid rgb(244, 244, 244);
+  ${CheckBoxWrapper} {
+    margin-right: 1.5em;
+  }
 `;
 
 export const CartItemName = styled.p`

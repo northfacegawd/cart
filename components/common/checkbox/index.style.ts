@@ -13,7 +13,7 @@ export const CheckBoxWrapper = styled.span<{ name: string }>`
     position: relative;
     transition: background-color 200ms ease-out;
   }
-  input[id=${({ name }) => name}] + label::after {
+  input[id=${({ name }) => `'${name}'`}] + label::after {
     position: absolute;
     content: '';
     top: 4px;
@@ -25,11 +25,11 @@ export const CheckBoxWrapper = styled.span<{ name: string }>`
     border-width: 0px 1px 1px 0px;
     transform: rotate(45deg);
   }
-  input[id=${({ name }) => name}]:checked + label {
+  input[id=${({ name }) => `'${name}'`}]:checked + label {
     border: 1px solid var(--primary);
     background-color: var(--primary);
   }
-  input[id=${({ name }) => name}]:checked + label::after {
+  input[id=${({ name }) => `'${name}'`}]:checked + label::after {
     border-color: white;
   }
 `;

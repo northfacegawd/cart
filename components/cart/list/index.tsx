@@ -38,6 +38,7 @@ export default function CartItemList() {
         {CART_LIST.map(({ item_name, item_no, detail_image_url, price }) => (
           <CartItem
             key={item_no}
+            item_no={item_no}
             detail_image_url={detail_image_url}
             item_name={item_name}
             price={price}
