@@ -1,9 +1,12 @@
 import React from 'react';
 
+import CheckBox from '@components/common/checkbox';
+import { useMapState } from '@hooks/useMapState';
+import { isSame } from '@lib/utils';
 import { Product } from '@models/product.model';
 
 import CartItem from '..';
-import { CartItemListTitle, CartItemListWrapper } from './index.style';
+import { CartActionBox, CartItemListWrapper } from './index.style';
 
 /**
  * store 생성하기 전까지 임시로 사용
@@ -31,17 +34,38 @@ const CART_LIST: Product[] = [
 ];
 
 export default function CartItemList() {
+  const [checkedIds, { onAdd, onDelete, onClear }] = useMapState<
+    number,
+    boolean
+  >();
+
+  const onCheck = (id: number) => {
+    if (checkedIds.has(id)) return onDelete(id);
+    onAdd(id, true);
+  };
+
+  const onCheckAllItem = () => {
+    if (isSame(checkedIds.size, CART_LIST.length)) return onClear();
+    CART_LIST.forEach(({ item_no }) => onAdd(item_no, true));
+  };
+
   return (
     <CartItemListWrapper>
-      <CartItemListTitle>장바구니 리스트</CartItemListTitle>
+      <CartActionBox>
+        <CheckBox
+          name="all-check"
+          onChange={onCheckAllItem}
+          checked={checkedIds.size === CART_LIST.length}
+        />
+        전체선택 | 선택삭제
+      </CartActionBox>
       <ul>
-        {CART_LIST.map(({ item_name, item_no, detail_image_url, price }) => (
+        {CART_LIST.map((cart) => (
           <CartItem
-            key={item_no}
-            item_no={item_no}
-            detail_image_url={detail_image_url}
-            item_name={item_name}
-            price={price}
+            key={cart.item_no}
+            checkedIds={checkedIds}
+            onCheck={onCheck}
+            {...cart}
           />
         ))}
       </ul>
