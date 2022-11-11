@@ -12,6 +12,7 @@ export const CheckBoxWrapper = styled.span<{ name: string }>`
     border: 1px solid rgb(212, 212, 212);
     position: relative;
     transition: background-color 200ms ease-out;
+    cursor: pointer;
   }
   input[id=${({ name }) => `'${name}'`}] + label::after {
     position: absolute;
