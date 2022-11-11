@@ -16,3 +16,19 @@ export const CartActionBox = styled.div`
     margin-right: 1.5em;
   }
 `;
+
+export const CartActionButton = styled.button`
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  vertical-align: baseline;
+`;
+
+export const ButtonDivision = styled.span`
+  width: 2px;
+  height: 16px;
+  background-color: var(--primary);
+  margin: 0 1em;
+`;

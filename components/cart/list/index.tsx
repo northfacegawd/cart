@@ -6,7 +6,12 @@ import { isSame } from '@lib/utils';
 import { Product } from '@models/product.model';
 
 import CartItem from '..';
-import { CartActionBox, CartItemListWrapper } from './index.style';
+import {
+  ButtonDivision,
+  CartActionBox,
+  CartActionButton,
+  CartItemListWrapper,
+} from './index.style';
 
 /**
  * store 생성하기 전까지 임시로 사용
@@ -57,7 +62,11 @@ export default function CartItemList() {
           onChange={onCheckAllItem}
           checked={checkedIds.size === CART_LIST.length}
         />
-        전체선택 | 선택삭제
+        <CartActionButton onClick={onCheckAllItem}>
+          전체선택 ({checkedIds.size}/{CART_LIST.length})
+        </CartActionButton>
+        <ButtonDivision />
+        <CartActionButton>선택삭제</CartActionButton>
       </CartActionBox>
       <ul>
         {CART_LIST.map((cart) => (
