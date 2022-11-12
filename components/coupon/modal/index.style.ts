@@ -5,6 +5,7 @@ export const ModalTitle = styled.p`
   font-size: 1.1rem;
   padding-bottom: 0.6em;
   border-bottom: 1px solid rgb(51, 51, 51);
+  margin: 0;
 `;
 
 export const CouponInfoList = styled.ul`
@@ -15,7 +16,7 @@ export const CouponInfoList = styled.ul`
 export const CouponInfo = styled.li`
   cursor: pointer;
   display: inline;
-  margin-bottom: 1em;
+  margin-top: 1em;
   font-weight: 500;
   font-size: 1.1rem;
   transition: color 200ms ease-out;
@@ -26,9 +27,9 @@ export const CouponInfo = styled.li`
 `;
 
 export const CloseButton = styled.button`
+  margin-top: 1em;
   height: 50px;
   width: 100%;
-  margin: 0 0.2em;
   border-radius: 4px;
   font-size: 1rem;
   font-weight: 600;
@@ -44,4 +45,13 @@ export const SelectedCouponTitle = styled.span`
   display: block;
   font-weight: 600;
   color: var(--primary);
+`;
+
+export const CouponEmpty = styled.li`
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1rem;
 `;

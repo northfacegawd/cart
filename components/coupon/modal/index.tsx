@@ -5,6 +5,7 @@ import { Coupon } from '@models/coupon.model';
 
 import {
   CloseButton,
+  CouponEmpty,
   CouponInfo,
   CouponInfoList,
   ModalTitle,
@@ -52,14 +53,18 @@ export default function CouponModal({
         )}
       </ModalTitle>
       <CouponInfoList>
-        {coupons.map((coupon) => (
-          <CouponInfo
-            key={coupon.title}
-            onClick={() => onSelectCouponWrapper(coupon)}
-          >
-            {coupon.title}
-          </CouponInfo>
-        ))}
+        {coupons.length <= 0 ? (
+          <CouponEmpty>사용할 수 있는 쿠폰이 없습니다 😢</CouponEmpty>
+        ) : (
+          coupons.map((coupon) => (
+            <CouponInfo
+              key={coupon.title}
+              onClick={() => onSelectCouponWrapper(coupon)}
+            >
+              {coupon.title}
+            </CouponInfo>
+          ))
+        )}
       </CouponInfoList>
       <CloseButton onClick={onClose}>닫기</CloseButton>
     </Modal>
