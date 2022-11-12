@@ -24,6 +24,9 @@ export const CartActionButton = styled.button`
   font-size: 1rem;
   font-weight: 500;
   vertical-align: baseline;
+  &:disabled {
+    cursor: default;
+  }
 `;
 
 export const ButtonDivision = styled.span`

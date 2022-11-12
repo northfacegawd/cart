@@ -3,15 +3,19 @@ import React, { HtmlHTMLAttributes } from 'react';
 
 import { CheckBoxWrapper } from './index.style';
 
-interface CheckBoxProps extends HtmlHTMLAttributes<HTMLInputElement> {
+interface CheckBoxProps
+  extends React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
   name: string;
-  checked?: boolean;
 }
 
 export default function CheckBox({
   name,
   style,
   checked,
+  disabled,
   ...rest
 }: CheckBoxProps) {
   return (
@@ -21,6 +25,7 @@ export default function CheckBox({
         name={name}
         id={name}
         checked={checked}
+        disabled={disabled}
         {...rest}
       />
       <label htmlFor={name} />
