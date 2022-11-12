@@ -1,16 +1,14 @@
 import create from 'zustand';
 
 import { isSame } from '@lib/utils';
+import { Cart } from '@models/cart.model';
 import { Product } from '@models/product.model';
-
-interface Cart extends Product {
-  count: number;
-}
 
 interface CartStore {
   cartList: Cart[];
   updateCart: (product: Product, count?: number) => void;
   deleteCart: (id: Product['item_no']) => void;
+  reset: () => void;
   getCartItem: (id: Product['item_no']) => Cart | undefined;
 }
 
@@ -35,6 +33,7 @@ const useStore = create<CartStore>((set, get) => ({
         cartList: newCartList,
       };
     }),
+  reset: () => set({ cartList: [] }),
   deleteCart: (id) =>
     set((state) => ({
       cartList: state.cartList.filter((cart) => cart.item_no !== id),
