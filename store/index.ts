@@ -94,6 +94,7 @@ const useStore = create<CartStore>((set, get) => ({
           { ...value, isSelected: true },
         ]),
       ),
+      lastUpdatedCart: null,
     })),
   clearAllSelectedCart: () =>
     set((state) => ({
@@ -103,6 +104,7 @@ const useStore = create<CartStore>((set, get) => ({
           { ...value, isSelected: false },
         ]),
       ),
+      lastUpdatedCart: null,
     })),
   getSelectedList: () => {
     const { cartList } = get();
