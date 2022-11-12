@@ -7,10 +7,14 @@ interface CartStore {
   cartList: Map<Cart['item_no'], Cart>;
   lastUpdatedCart: Cart | null;
   addCart: (product: Product, count?: number) => void;
-  updateCart: (id: Product['item_no'], type: 'up' | 'down') => void;
-  deleteCart: (id: Product['item_no']) => void;
+  updateCart: (id: Cart['item_no'], type: 'up' | 'down') => void;
+  deleteCart: (id: Cart['item_no']) => void;
+  getCartItem: (id: Cart['item_no']) => Cart | undefined;
+  getSelectedList: () => Map<Cart['item_no'], Cart>;
+  selectCart: (id: Cart['item_no']) => void;
+  allSelectCart: () => void;
+  clearAllSelectedCart: () => void;
   reset: () => void;
-  getCartItem: (id: Product['item_no']) => Cart | undefined;
 }
 
 const useStore = create<CartStore>((set, get) => ({
@@ -23,7 +27,7 @@ const useStore = create<CartStore>((set, get) => ({
         return {
           cartList: new Map([
             ...state.cartList,
-            [product.item_no, { ...product, count }],
+            [product.item_no, { ...product, count, isSelected: true }],
           ]),
           lastUpdatedCart: { ...product, count: 1 },
         };
@@ -66,11 +70,45 @@ const useStore = create<CartStore>((set, get) => ({
         lastUpdatedCart: null,
       };
     }),
-  reset: () => set({ cartList: new Map(), lastUpdatedCart: null }),
   getCartItem: (id) => {
     const { cartList } = get();
     return cartList.get(id);
   },
+  selectCart: (id) =>
+    set((state) => {
+      const carItem = state.cartList.get(id);
+      if (!carItem) throw Error();
+      return {
+        cartList: new Map([
+          ...state.cartList,
+          [id, { ...carItem, isSelected: !carItem?.isSelected }],
+        ]),
+        lastUpdatedCart: null,
+      };
+    }),
+  allSelectCart: () =>
+    set((state) => ({
+      cartList: new Map(
+        [...state.cartList].map(([key, value]) => [
+          key,
+          { ...value, isSelected: true },
+        ]),
+      ),
+    })),
+  clearAllSelectedCart: () =>
+    set((state) => ({
+      cartList: new Map(
+        [...state.cartList].map(([key, value]) => [
+          key,
+          { ...value, isSelected: false },
+        ]),
+      ),
+    })),
+  getSelectedList: () => {
+    const { cartList } = get();
+    return new Map([...cartList].filter(([, value]) => value.isSelected));
+  },
+  reset: () => set({ cartList: new Map(), lastUpdatedCart: null }),
 }));
 
 export default useStore;
