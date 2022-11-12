@@ -9,8 +9,9 @@ interface PriceProps {
 }
 
 export const AmountWrapper = styled.div`
-  display: table;
   width: 100%;
+  display: table;
+  margin: 0 auto;
   border-top: 3px solid var(--primary);
   border-bottom: 1px solid var(--primary);
   @media (max-width: 650px) {

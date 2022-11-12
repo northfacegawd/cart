@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
+import AddCartModal from '@components/cart/add-modal';
 import { numberIntoPrice } from '@lib/utils';
 import { Product } from '@models/product.model';
-import useStore from '@store/index';
 
 import {
   CartButton,
@@ -20,26 +20,30 @@ import {
  * @returns
  */
 export default function ProductItem(props: Product) {
-  const updateCart = useStore((state) => state.updateCart);
-  const [opacity, setOpacity] = useState<number>(0);
+  const [open, setOpen] = useState<boolean>(false);
   const { detail_image_url, item_name, price } = props;
 
   return (
-    <ProductWrapper>
-      <ImageWrapper>
-        <ProductImage
-          onLoadingComplete={() => setOpacity(1)}
-          src={detail_image_url}
-          layout="fill"
-          objectFit="cover"
-          style={{ opacity }}
-        />
-      </ImageWrapper>
-      <ProductInfo>
-        <ProductName title={item_name}>{item_name}</ProductName>
-        <ProductPrice>{numberIntoPrice(price)}</ProductPrice>
-      </ProductInfo>
-      <CartButton onClick={() => updateCart(props)}>장바구니 담기</CartButton>
-    </ProductWrapper>
+    <>
+      <ProductWrapper>
+        <ImageWrapper>
+          <ProductImage
+            src={detail_image_url}
+            layout="fill"
+            objectFit="cover"
+          />
+        </ImageWrapper>
+        <ProductInfo>
+          <ProductName title={item_name}>{item_name}</ProductName>
+          <ProductPrice>{numberIntoPrice(price)}</ProductPrice>
+        </ProductInfo>
+        <CartButton onClick={() => setOpen(true)}>장바구니 담기</CartButton>
+      </ProductWrapper>
+      <AddCartModal
+        open={open}
+        onClose={() => setOpen(false)}
+        product={props}
+      />
+    </>
   );
 }

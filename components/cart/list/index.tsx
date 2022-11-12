@@ -11,6 +11,7 @@ import {
   CartActionBox,
   CartActionButton,
   CartItemListWrapper,
+  CartListEmpty,
 } from './index.style';
 
 export default function CartItemList() {
@@ -55,18 +56,22 @@ export default function CartItemList() {
         </CartActionButton>
         <ButtonDivision />
         <CartActionButton onClick={onDeleteCheckedItem} disabled={disabled}>
-          선택삭제
+          선택항목 삭제
         </CartActionButton>
       </CartActionBox>
       <ul>
-        {cartList.map((cart) => (
-          <CartItem
-            key={cart.item_no}
-            checkedIds={checkedIds}
-            onCheck={onCheck}
-            {...cart}
-          />
-        ))}
+        {cartList.length <= 0 ? (
+          <CartListEmpty>장바구니에 담긴 상품이 없습니다 😢</CartListEmpty>
+        ) : (
+          cartList.map((cart) => (
+            <CartItem
+              key={cart.item_no}
+              checkedIds={checkedIds}
+              onCheck={onCheck}
+              {...cart}
+            />
+          ))
+        )}
       </ul>
     </CartItemListWrapper>
   );

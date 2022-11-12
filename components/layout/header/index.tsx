@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
+import CartNotification from '@components/common/cart-notification';
 import ShoppingCart from '@components/icons/shopping-cart';
 
 import {
@@ -31,7 +32,7 @@ export default function Header() {
           </div>
           <Link href="/cart">
             <HeaderLink active={asPath.startsWith('/cart')}>
-              <ShoppingCart />
+              <CartNotification />
             </HeaderLink>
           </Link>
         </HeaderTopNav>
