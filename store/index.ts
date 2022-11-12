@@ -11,9 +11,10 @@ interface CartStore {
   cartList: Cart[];
   updateCart: (product: Product, count?: number) => void;
   deleteCart: (id: Product['item_no']) => void;
+  getCartItem: (id: Product['item_no']) => Cart | undefined;
 }
 
-const useStore = create<CartStore>((set) => ({
+const useStore = create<CartStore>((set, get) => ({
   cartList: [],
   updateCart: (product, count: number = 1) =>
     set((state) => {
@@ -38,6 +39,10 @@ const useStore = create<CartStore>((set) => ({
     set((state) => ({
       cartList: state.cartList.filter((cart) => cart.item_no !== id),
     })),
+  getCartItem: (id) => {
+    const { cartList } = get();
+    return cartList.find((cart) => cart.item_no === id);
+  },
 }));
 
 export default useStore;

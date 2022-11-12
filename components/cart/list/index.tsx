@@ -15,6 +15,8 @@ import {
 
 export default function CartItemList() {
   const cartList = useStore((state) => state.cartList);
+  const deleteCart = useStore((state) => state.deleteCart);
+
   const [checkedIds, { onAdd, onDelete, onClear }] = useMapState<
     number,
     boolean
@@ -28,6 +30,13 @@ export default function CartItemList() {
   const onCheckAllItem = () => {
     if (isSame(checkedIds.size, cartList.length)) return onClear();
     cartList.forEach(({ item_no }) => onAdd(item_no, true));
+  };
+
+  const onDeleteCheckedItem = () => {
+    [...checkedIds].forEach(([key]) => {
+      onDelete(key);
+      deleteCart(key);
+    });
   };
 
   const disabled = !cartList.length;
@@ -45,7 +54,9 @@ export default function CartItemList() {
           전체선택 ({checkedIds.size}/{cartList.length})
         </CartActionButton>
         <ButtonDivision />
-        <CartActionButton disabled={disabled}>선택삭제</CartActionButton>
+        <CartActionButton onClick={onDeleteCheckedItem} disabled={disabled}>
+          선택삭제
+        </CartActionButton>
       </CartActionBox>
       <ul>
         {cartList.map((cart) => (
