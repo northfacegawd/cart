@@ -1,15 +1,25 @@
 import { NextPage } from 'next';
 import React from 'react';
 
+import Amount from '@components/amount';
 import CartItemList from '@components/cart/list';
-import { CartPageTitle, CartSection } from '@styles/pages/cart.style';
+import {
+  AmountSection,
+  CartPageTitle,
+  CartSection,
+} from '@styles/pages/cart.style';
 
 const CartPage: NextPage = () => {
   return (
-    <CartSection>
-      <CartPageTitle>장바구니</CartPageTitle>
-      <CartItemList />
-    </CartSection>
+    <>
+      <CartSection>
+        <CartPageTitle>장바구니</CartPageTitle>
+        <CartItemList />
+      </CartSection>
+      <AmountSection>
+        <Amount />
+      </AmountSection>
+    </>
   );
 };
 
