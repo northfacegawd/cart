@@ -9,6 +9,7 @@ interface PriceProps {
 }
 
 export const AmountWrapper = styled.div`
+  position: relative;
   width: 100%;
   display: table;
   margin: 0 auto;
@@ -62,3 +63,17 @@ export const OrderCountBox = styled(AmountBox)`
 `;
 
 export const OrderCount = styled(Price)``;
+
+export const SelectCouponButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  top: -35px;
+  right: 0;
+  background-color: inherit;
+  border: none;
+  font-weight: 600;
+  transition: color 200ms ease-out;
+  &:hover {
+    color: var(--primary);
+  }
+`;
