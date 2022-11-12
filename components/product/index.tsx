@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { numberIntoPrice } from '@lib/utils';
 import { Product } from '@models/product.model';
+import useStore from '@store/index';
 
 import {
   CartButton,
@@ -19,6 +20,7 @@ import {
  * @returns
  */
 export default function ProductItem(props: Product) {
+  const updateCart = useStore((state) => state.updateCart);
   const [opacity, setOpacity] = useState<number>(0);
   const { detail_image_url, item_name, price } = props;
 
@@ -37,7 +39,7 @@ export default function ProductItem(props: Product) {
         <ProductName title={item_name}>{item_name}</ProductName>
         <ProductPrice>{numberIntoPrice(price)}</ProductPrice>
       </ProductInfo>
-      <CartButton>장바구니 담기</CartButton>
+      <CartButton onClick={() => updateCart(props)}>장바구니 담기</CartButton>
     </ProductWrapper>
   );
 }

@@ -14,11 +14,5 @@ describe('useMapState hook', () => {
     act(() => result.current[1].onAdd('test2', 'test2'));
     act(() => result.current[1].onClear());
     expect(result.current[0].size).toBe(0);
-
-    // act(() => result.current.onIncrease());
-    // expect(result.current.count).toBe(1);
-    // act(() => result.current.onDecrease());
-    // act(() => result.current.onDecrease());
-    // expect(result.current.count).toBe(-1);
   });
 });

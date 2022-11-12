@@ -33,6 +33,7 @@ module.exports = {
       '@styles': path.resolve(__dirname, '../styles'),
       '@constant': path.resolve(__dirname, '../constant'),
       '@mocks': path.resolve(__dirname, '../mocks'),
+      '@store': path.resolve(__dirname, '../store'),
     };
 
     return config;

@@ -7,11 +7,14 @@ interface HeaderLinkProps {
 
 export const GlobalHeader = styled.header`
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
   box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
   height: 60px;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
 `;
 
 export const HeaderWrapper = styled.div`
@@ -42,4 +45,8 @@ export const HeaderLink = styled.a<HeaderLinkProps>`
     css`
       color: var(--primary);
     `}
+`;
+
+export const HeaderLogo = styled(HeaderLink)`
+  margin-right: 1.5em;
 `;
