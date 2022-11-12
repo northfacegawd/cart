@@ -14,20 +14,20 @@ import {
 } from './index.style';
 
 export default function Amount() {
-  const cartList = useStore((state) => state.cartList);
+  const selectedCartList = useStore((state) => state.getSelectedList());
   const { data } = useQuery('coupons', fetchCoupons);
 
   const totalAmount = useMemo(() => {
-    return [...cartList]
+    return [...selectedCartList]
       .map(([, { count, price }]) => count * price)
       ?.reduce((a, b) => a + b, 0);
-  }, [cartList, data]);
+  }, [selectedCartList, data]);
 
   return (
     <AmountWrapper>
       <OrderCountBox>
         <Subject>주문 상품 수</Subject>
-        <Price>총 {numberIntoPrice(cartList.size)}개</Price>
+        <Price>총 {numberIntoPrice(selectedCartList.size)}개</Price>
       </OrderCountBox>
       <AmountBox width="35%">
         <Subject>총 주문금액</Subject>
