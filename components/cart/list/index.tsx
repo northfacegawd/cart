@@ -56,7 +56,7 @@ export default function CartItemList() {
         </CartActionButton>
         <ButtonDivision />
         <CartActionButton onClick={onDeleteCheckedItem} disabled={disabled}>
-          선택삭제
+          선택항목 삭제
         </CartActionButton>
       </CartActionBox>
       <ul>
