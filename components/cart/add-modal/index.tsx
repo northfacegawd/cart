@@ -31,11 +31,11 @@ export default function AddCartModal({
 }: AddCartModalProps) {
   const { item_name, price, item_no } = product;
   const counterData = useCounter();
-  const updateCart = useStore((state) => state.updateCart);
+  const addCart = useStore((state) => state.addCart);
   const cartList = useStore((state) => state.cartList);
 
   const onAddCart = () => {
-    updateCart(product, counterData.count);
+    addCart(product, counterData.count);
     counterData.onReset();
     onClose();
   };

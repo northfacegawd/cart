@@ -14,11 +14,11 @@ const Template: ComponentStory<typeof CartNotification> = () => (
 export const Default = Template.bind({});
 Default.decorators = [
   (Story) => {
-    const updateCart = useStore((state) => state.updateCart);
+    const addCart = useStore((state) => state.addCart);
     const reset = useStore((state) => state.reset);
 
     useEffect(() => {
-      updateCart({
+      addCart({
         item_no: 122997,
         item_name: '스탠리 클래식 런치박스',
         detail_image_url:

@@ -3,7 +3,6 @@ import React from 'react';
 
 import CheckBox from '@components/common/checkbox';
 import Counter from '@components/common/counter';
-import { useCounter } from '@hooks/useCounter';
 import { numberIntoPrice } from '@lib/utils';
 import { Product } from '@models/product.model';
 import useStore from '@store/index';
@@ -28,8 +27,8 @@ export default function CartItem(props: CartItemProps) {
 
   if (!cartItem) return null;
 
-  const onIncrease = () => updateCart(cartItem, 1);
-  const onDecrease = () => updateCart(cartItem, -1);
+  const onIncrease = () => updateCart(cartItem.item_no, 'up');
+  const onDecrease = () => updateCart(cartItem.item_no, 'down');
 
   return (
     <CartItemWrapper>

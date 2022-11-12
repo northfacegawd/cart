@@ -18,12 +18,10 @@ Default.args = {
 };
 Default.decorators = [
   (Story, options) => {
-    const updateCart = useStore((state) => state.updateCart);
+    const addCart = useStore((state) => state.addCart);
     const reset = useStore((state) => state.reset);
     useEffect(() => {
-      options.args.productList.forEach((product: Product) =>
-        updateCart(product),
-      );
+      options.args.productList.forEach((product: Product) => addCart(product));
       return () => {
         reset();
       };

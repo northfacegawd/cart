@@ -7,7 +7,8 @@ import { Product } from '@models/product.model';
 interface CartStore {
   cartList: Cart[];
   lastUpdatedCart: Cart | null;
-  updateCart: (product: Product, count?: number) => void;
+  addCart: (product: Product, count?: number) => void;
+  updateCart: (id: Product['item_no'], type: 'up' | 'down') => void;
   deleteCart: (id: Product['item_no']) => void;
   reset: () => void;
   getCartItem: (id: Product['item_no']) => Cart | undefined;
@@ -16,7 +17,7 @@ interface CartStore {
 const useStore = create<CartStore>((set, get) => ({
   cartList: [],
   lastUpdatedCart: null,
-  updateCart: (product, count: number = 1) =>
+  addCart: (product, count: number = 1) =>
     set((state) => {
       const prevCartItem = state.cartList.find(({ item_no }) =>
         isSame(item_no, product.item_no),
@@ -42,11 +43,25 @@ const useStore = create<CartStore>((set, get) => ({
           : null,
       };
     }),
-  reset: () => set({ cartList: [] }),
+  updateCart: (id, type) =>
+    set((state) => {
+      const newCartList = state.cartList.map((cart) => {
+        if (isSame(cart.item_no, id)) {
+          return {
+            ...cart,
+            count: type === 'up' ? cart.count + 1 : cart.count - 1,
+          };
+        }
+        return cart;
+      });
+      return { cartList: newCartList, lastUpdatedCart: null };
+    }),
   deleteCart: (id) =>
     set((state) => ({
       cartList: state.cartList.filter((cart) => cart.item_no !== id),
+      lastUpdatedCart: null,
     })),
+  reset: () => set({ cartList: [], lastUpdatedCart: null }),
   getCartItem: (id) => {
     const { cartList } = get();
     return cartList.find((cart) => cart.item_no === id);

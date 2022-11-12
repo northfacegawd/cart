@@ -14,14 +14,14 @@ const ITEM_NUMBER = 122997;
 
 const DemoCartItem = (props: DemoCartItemProps) => {
   const [checkedIds, { onAdd, onDelete }] = useMapState<number, true>();
-  const updateCart = useStore((state) => state.updateCart);
+  const addCart = useStore((state) => state.addCart);
   const reset = useStore((state) => state.reset);
 
   // 단순히 렌더링을 위해 스토어에서 리스트를 불러옴
   useStore((state) => state.cartList);
 
   useEffect(() => {
-    updateCart(
+    addCart(
       {
         item_no: ITEM_NUMBER,
         item_name: '스탠리 클래식 런치박스',
@@ -35,7 +35,7 @@ const DemoCartItem = (props: DemoCartItemProps) => {
     return () => {
       reset();
     };
-  }, [updateCart]);
+  }, [addCart]);
 
   const onCheck = (id: number) => {
     if (checkedIds.has(id)) return onDelete(id);
