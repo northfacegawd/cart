@@ -40,6 +40,11 @@ export default function AddCartModal({
     onClose();
   };
 
+  const onCloseModal = () => {
+    counterData.onReset();
+    onClose();
+  };
+
   const full =
     cartList.length >= 3 && !cartList.find((cart) => cart.item_no === item_no);
 
@@ -72,7 +77,7 @@ export default function AddCartModal({
             장바구니에는 최대 3개의 상품까지만 담을 수 있습니다.
           </Message>
         )}
-        <ActionButton onClick={onClose}>취소</ActionButton>
+        <ActionButton onClick={onCloseModal}>취소</ActionButton>
         <ActionButton
           primary
           disabled={!counterData.count || full}
