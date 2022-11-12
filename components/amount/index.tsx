@@ -1,4 +1,6 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import { fetchCoupons } from 'requests/coupon';
 
 import { numberIntoPrice } from '@lib/utils';
 import useStore from '@store/index';
@@ -13,6 +15,7 @@ import {
 
 export default function Amount() {
   const cartList = useStore((state) => state.cartList);
+  const { data } = useQuery('coupons', fetchCoupons);
 
   const totalAmount = cartList
     .map(({ count, price }) => count * price)
