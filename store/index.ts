@@ -6,6 +6,7 @@ import { Product } from '@models/product.model';
 
 interface CartStore {
   cartList: Cart[];
+  lastUpdatedCart: Cart | null;
   updateCart: (product: Product, count?: number) => void;
   deleteCart: (id: Product['item_no']) => void;
   reset: () => void;
@@ -14,6 +15,7 @@ interface CartStore {
 
 const useStore = create<CartStore>((set, get) => ({
   cartList: [],
+  lastUpdatedCart: null,
   updateCart: (product, count: number = 1) =>
     set((state) => {
       const prevCartItem = state.cartList.find(({ item_no }) =>
@@ -22,6 +24,7 @@ const useStore = create<CartStore>((set, get) => ({
       if (!prevCartItem) {
         return {
           cartList: state.cartList.concat({ ...product, count }),
+          lastUpdatedCart: { ...product, count: 1 },
         };
       }
       const newCartList = state.cartList.map((cart) =>
@@ -29,8 +32,14 @@ const useStore = create<CartStore>((set, get) => ({
           ? { ...cart, count: cart.count + count }
           : cart,
       );
+      const fintCartItem = state.cartList.find((cart) =>
+        isSame(cart.item_no, product.item_no),
+      );
       return {
         cartList: newCartList,
+        lastUpdatedCart: fintCartItem
+          ? { ...fintCartItem, count: fintCartItem.count + count }
+          : null,
       };
     }),
   reset: () => set({ cartList: [] }),
