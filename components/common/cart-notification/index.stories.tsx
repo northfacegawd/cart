@@ -5,32 +5,39 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import CartNotification from '.';
 
-export default {} as ComponentMeta<typeof CartNotification>;
+export default {
+  title: 'Cart Notification',
+  component: CartNotification,
+  decorators: [
+    (Story) => {
+      const addCart = useStore((state) => state.addCart);
+      const reset = useStore((state) => state.reset);
+
+      useEffect(() => {
+        addCart({
+          item_no: 122997,
+          item_name: '스탠리 클래식 런치박스',
+          detail_image_url:
+            'https://img.29cm.co.kr/contents/itemDetail/201702/cut4_320170216150109.jpg?width=500',
+          price: 75000,
+          score: 200,
+        });
+        return () => {
+          reset();
+        };
+      }, []);
+
+      return (
+        <div style={{ marginLeft: '500px' }}>
+          <Story name="default" />
+        </div>
+      );
+    },
+  ],
+} as ComponentMeta<typeof CartNotification>;
 
 const Template: ComponentStory<typeof CartNotification> = () => (
   <CartNotification />
 );
 
 export const Default = Template.bind({});
-Default.decorators = [
-  (Story) => {
-    const addCart = useStore((state) => state.addCart);
-    const reset = useStore((state) => state.reset);
-
-    useEffect(() => {
-      addCart({
-        item_no: 122997,
-        item_name: '스탠리 클래식 런치박스',
-        detail_image_url:
-          'https://img.29cm.co.kr/contents/itemDetail/201702/cut4_320170216150109.jpg?width=500',
-        price: 75000,
-        score: 200,
-      });
-      return () => {
-        reset();
-      };
-    }, []);
-
-    return <Story />;
-  },
-];
