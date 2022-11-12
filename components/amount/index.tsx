@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useQuery } from 'react-query';
 import { fetchCoupons } from 'requests/coupon';
 
@@ -17,15 +17,17 @@ export default function Amount() {
   const cartList = useStore((state) => state.cartList);
   const { data } = useQuery('coupons', fetchCoupons);
 
-  const totalAmount = cartList
-    .map(({ count, price }) => count * price)
-    ?.reduce((a, b) => a + b, 0);
+  const totalAmount = useMemo(() => {
+    return [...cartList]
+      .map(([, { count, price }]) => count * price)
+      ?.reduce((a, b) => a + b, 0);
+  }, [cartList, data]);
 
   return (
     <AmountWrapper>
       <OrderCountBox>
         <Subject>주문 상품 수</Subject>
-        <Price>총 {numberIntoPrice(cartList.length)}개</Price>
+        <Price>총 {numberIntoPrice(cartList.size)}개</Price>
       </OrderCountBox>
       <AmountBox width="35%">
         <Subject>총 주문금액</Subject>

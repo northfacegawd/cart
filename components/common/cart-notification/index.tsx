@@ -37,7 +37,7 @@ export default function CartNotification() {
   return (
     <CartNotifiCationWrapper data-tip="hello world">
       <ShoppingCart />
-      {cartList.length > 0 && <Count>{cartList.length}</Count>}
+      {cartList.size > 0 && <Count>{cartList.size}</Count>}
       {cartItem && (
         <Transition in={!!cartItem} timeout={0} mountOnEnter unmountOnExit>
           <CartTooltip>

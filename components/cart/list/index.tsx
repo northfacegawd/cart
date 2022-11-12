@@ -29,7 +29,7 @@ export default function CartItemList() {
   };
 
   const onCheckAllItem = () => {
-    if (isSame(checkedIds.size, cartList.length)) return onClear();
+    if (isSame(checkedIds.size, cartList.size)) return onClear();
     cartList.forEach(({ item_no }) => onAdd(item_no, true));
   };
 
@@ -40,7 +40,7 @@ export default function CartItemList() {
     });
   };
 
-  const disabled = !cartList.length;
+  const disabled = !cartList.size;
 
   return (
     <CartItemListWrapper>
@@ -48,11 +48,11 @@ export default function CartItemList() {
         <CheckBox
           name="all-check"
           onChange={onCheckAllItem}
-          checked={isSame(checkedIds.size, cartList.length) && !disabled}
+          checked={isSame(checkedIds.size, cartList.size) && !disabled}
           disabled={disabled}
         />
         <CartActionButton onClick={onCheckAllItem} disabled={disabled}>
-          전체선택 ({checkedIds.size}/{cartList.length})
+          전체선택 ({checkedIds.size}/{cartList.size})
         </CartActionButton>
         <ButtonDivision />
         <CartActionButton onClick={onDeleteCheckedItem} disabled={disabled}>
@@ -60,10 +60,10 @@ export default function CartItemList() {
         </CartActionButton>
       </CartActionBox>
       <ul>
-        {cartList.length <= 0 ? (
+        {cartList.size <= 0 ? (
           <CartListEmpty>장바구니에 담긴 상품이 없습니다 😢</CartListEmpty>
         ) : (
-          cartList.map((cart) => (
+          [...cartList].map(([, cart]) => (
             <CartItem
               key={cart.item_no}
               checkedIds={checkedIds}

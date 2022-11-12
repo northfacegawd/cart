@@ -45,8 +45,7 @@ export default function AddCartModal({
     onClose();
   };
 
-  const full =
-    cartList.length >= 3 && !cartList.find((cart) => cart.item_no === item_no);
+  const full = cartList.size >= 3 && !cartList.get(item_no);
 
   return (
     <Modal
