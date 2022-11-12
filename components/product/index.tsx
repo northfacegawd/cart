@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { numberIntoPrice } from '@lib/utils';
 import { Product } from '@models/product.model';
@@ -21,19 +21,12 @@ import {
  */
 export default function ProductItem(props: Product) {
   const updateCart = useStore((state) => state.updateCart);
-  const [opacity, setOpacity] = useState<number>(0);
   const { detail_image_url, item_name, price } = props;
 
   return (
     <ProductWrapper>
       <ImageWrapper>
-        <ProductImage
-          onLoadingComplete={() => setOpacity(1)}
-          src={detail_image_url}
-          layout="fill"
-          objectFit="cover"
-          style={{ opacity }}
-        />
+        <ProductImage src={detail_image_url} layout="fill" objectFit="cover" />
       </ImageWrapper>
       <ProductInfo>
         <ProductName title={item_name}>{item_name}</ProductName>

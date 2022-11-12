@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import FadeInImage from '@components/common/fadein-image';
 import styled from '@emotion/styled';
 
 export const ProductWrapper = styled.li`
@@ -16,7 +17,7 @@ export const ImageWrapper = styled.div`
   height: 320px;
 `;
 
-export const ProductImage = styled(Image)`
+export const ProductImage = styled(FadeInImage)`
   top: 0;
   left: 0;
   transition-duration: 200ms, 400ms;
