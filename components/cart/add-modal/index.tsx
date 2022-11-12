@@ -36,6 +36,7 @@ export default function AddCartModal({
 
   const onAddCart = () => {
     updateCart(product, counterData.count);
+    counterData.onReset();
     onClose();
   };
 
@@ -65,7 +66,6 @@ export default function AddCartModal({
           {numberIntoPrice(counterData.count * price)}
         </ProductAmount>
       </ProductAmountBox>
-
       <ActionButtonBox>
         {full && (
           <Message>

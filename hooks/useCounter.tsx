@@ -19,5 +19,7 @@ export function useCounter(
     setCount((prev) => prev - 1);
   }, []);
 
-  return { count, onIncrease, onDecrease, ...options };
+  const onReset = useCallback(() => setCount(defaultValue), []);
+
+  return { count, onIncrease, onDecrease, onReset, ...options };
 }
