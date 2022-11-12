@@ -29,6 +29,18 @@ export const CartActionButton = styled.button`
   }
 `;
 
+export const CartListEmpty = styled.li`
+  width: 100%;
+  height: 100px;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgb(244, 244, 244);
+  font-size: 1rem;
+  font-weight: 600;
+`;
+
 export const ButtonDivision = styled.span`
   width: 2px;
   height: 16px;
