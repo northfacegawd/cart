@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 export const ProductUList = styled.ul`
   margin: 0 auto;
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   @media (max-width: 900px) {
