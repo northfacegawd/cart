@@ -6,3 +6,9 @@ export interface Product {
   score: number;
   availableCoupon?: boolean;
 }
+
+export interface ProductsRsponse {
+  data: Product[];
+  limit: number;
+  totalCount: number;
+}
