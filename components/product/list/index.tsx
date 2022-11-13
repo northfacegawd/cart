@@ -5,18 +5,29 @@ import Pagination from '@components/common/pagination';
 import ProductItem from '@components/product';
 import { useProducts } from '@hooks/useProducts';
 
-import { PaginatinWrapper, ProducstWrapper, ProductUList } from './index.style';
+import ProductSkeleton from '../skeleton';
+import {
+  ErrorMesasge,
+  PaginatinWrapper,
+  ProducstWrapper,
+  ProductUList,
+} from './index.style';
 
 export default function ProductList() {
   const { query } = useRouter();
-  const { data, isLoading, error } = useProducts(query.page);
+  const { data, isLoading, isError } = useProducts(query.page);
 
   return (
     <ProducstWrapper>
+      {isError && <ErrorMesasge>에러가 발생했습니다 😢</ErrorMesasge>}
       <ProductUList>
-        {data?.data?.map((product) => (
-          <ProductItem key={product.item_no} {...product} />
-        ))}
+        {isLoading
+          ? Array.from({ length: 5 }).map((_, i) => (
+              <ProductSkeleton key={(i + 1).toString()} />
+            ))
+          : data?.data?.map((product) => (
+              <ProductItem key={product.item_no} {...product} />
+            ))}
       </ProductUList>
       {data && (
         <PaginatinWrapper>

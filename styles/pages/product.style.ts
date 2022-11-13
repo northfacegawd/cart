@@ -4,5 +4,5 @@ export const ProdctsSection = styled.section``;
 
 export const ProductsPageTitle = styled.h1`
   text-align: center;
-  margin-bottom: 5em;
+  margin-bottom: 3em;
 `;
