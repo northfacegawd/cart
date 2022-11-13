@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
+import Pagination from '@components/common/pagination';
 import ProductItem from '@components/product';
 import { useProducts } from '@hooks/useProducts';
 
-import { ProducstWrapper, ProductUList } from './index.style';
+import { PaginatinWrapper, ProducstWrapper, ProductUList } from './index.style';
 
 export default function ProductList() {
   const { query } = useRouter();
@@ -13,10 +14,20 @@ export default function ProductList() {
   return (
     <ProducstWrapper>
       <ProductUList>
-        {data?.map((product) => (
+        {data?.data?.map((product) => (
           <ProductItem key={product.item_no} {...product} />
         ))}
       </ProductUList>
+      {data && (
+        <PaginatinWrapper>
+          <Pagination
+            currentPage={+(query.page ?? 1)}
+            limit={data.limit}
+            pageCount={5}
+            totalCount={data.totalCount}
+          />
+        </PaginatinWrapper>
+      )}
     </ProducstWrapper>
   );
 }

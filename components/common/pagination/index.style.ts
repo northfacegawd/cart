@@ -3,10 +3,12 @@ import styled from '@emotion/styled';
 
 interface PageProps {
   active?: boolean;
+  disabled?: boolean;
 }
 
 export const PageList = styled.ul`
   display: flex;
+  justify-content: center;
   margin: 0 auto;
 `;
 
@@ -34,6 +36,12 @@ export const Page = styled.li<PageProps>`
   }
   ${({ active }) =>
     active &&
+    css`
+      background-color: rgb(247, 247, 247);
+      color: var(--primary);
+    `}
+  ${({ disabled }) =>
+    disabled &&
     css`
       background-color: rgb(247, 247, 247);
       color: var(--primary);

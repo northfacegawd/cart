@@ -20,3 +20,7 @@ export const ProductUList = styled.ul`
 export const ProducstWrapper = styled.div`
   margin: 0 auto;
 `;
+
+export const PaginatinWrapper = styled.div`
+  margin-top: 3rem;
+`;
