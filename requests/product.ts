@@ -6,7 +6,7 @@ export const fetchProducts = async (page: any) => {
   const {
     data: { data },
   } = await axios.get<{ data: Product[] }>('/api/products', {
-    params: { page },
+    params: { page: page ?? 1 },
   });
 
   return data;

@@ -1,8 +1,7 @@
 import React, { useMemo, useState } from 'react';
-import { useQuery } from 'react-query';
-import { fetchCoupons } from 'requests/coupon';
 
 import CouponModal from '@components/coupon/modal';
+import { useCoupons } from '@hooks/useCoupons';
 import {
   convertMapIntoArray,
   getTotal,
@@ -27,7 +26,7 @@ export default function Amount() {
   const selectedCartList = useStore((state) => state.getSelectedList());
   const [open, setOpen] = useState<boolean>(false);
   const [selectedCoupon, setSelectedCoupon] = useState<Coupon>();
-  const { data } = useQuery('coupons', fetchCoupons);
+  const { data } = useCoupons();
 
   const { totalAmount, discountAmount, availableCartList } = useMemo(() => {
     if (!selectedCartList.size) return { totalAmount: 0, discountAmount: 0 };

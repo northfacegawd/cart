@@ -1,20 +1,14 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useQuery } from 'react-query';
-import { fetchProducts } from 'requests/product';
 
 import ProductItem from '@components/product';
+import { useProducts } from '@hooks/useProducts';
 
 import { ProducstWrapper, ProductUList } from './index.style';
 
 export default function ProductList() {
   const { query } = useRouter();
-  const page = query.page ?? 1;
-
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['products', page],
-    queryFn: () => fetchProducts(page),
-  });
+  const { data, isLoading, error } = useProducts(query.page);
 
   return (
     <ProducstWrapper>
