@@ -45,7 +45,11 @@ export default function Amount() {
     if (selectedCoupon?.discountRate) {
       discount = availableTotal / selectedCoupon.discountRate;
     } else if (selectedCoupon?.discountAmount) {
-      discount = selectedCoupon?.discountAmount ?? discount;
+      discount = selectedCoupon.discountAmount;
+    }
+    // 할인금액이 총 합 보다 큰 경우 할인금액을 총 합 만큼 설저
+    if (availableTotal < discount) {
+      discount = availableTotal;
     }
     // 선택된 상품과 쿠폰 사용이 가능한 상품의 갯수가 같으면 여기서 리턴
     if (isSame(convertedArray.length, availableList.length)) {
@@ -87,7 +91,7 @@ export default function Amount() {
         </AmountBox>
         <AmountBox width="30%">
           <Subject>쿠폰할인</Subject>
-          <Price>{discountAmount}원</Price>
+          <Price>{numberIntoPrice(discountAmount)}원</Price>
         </AmountBox>
         <AmountBox width="35%">
           <Subject>총 결제금액</Subject>
