@@ -45,6 +45,7 @@
 ### 테스트
 Storybook을 통해 해당 컴포넌트의 동작 및 디자인을 점검
 Jest, React Testing Library를 통해 hook, util 함수 같은 비즈니스 로직에 일정 부분을 테스트
+(Product 컴포넌트 에러핸들링 및 store테스트 진행예정 - *시간이 된다면* )
 
 ## 담당자
 
