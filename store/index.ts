@@ -1,71 +1,116 @@
 import create from 'zustand';
 
-import { isSame } from '@lib/utils';
 import { Cart } from '@models/cart.model';
 import { Product } from '@models/product.model';
 
 interface CartStore {
-  cartList: Cart[];
+  cartList: Map<Cart['item_no'], Cart>;
   lastUpdatedCart: Cart | null;
   addCart: (product: Product, count?: number) => void;
-  updateCart: (id: Product['item_no'], type: 'up' | 'down') => void;
-  deleteCart: (id: Product['item_no']) => void;
+  updateCart: (id: Cart['item_no'], type: 'up' | 'down') => void;
+  deleteCart: (id: Cart['item_no']) => void;
+  getCartItem: (id: Cart['item_no']) => Cart | undefined;
+  getSelectedList: () => Map<Cart['item_no'], Cart>;
+  selectCart: (id: Cart['item_no']) => void;
+  allSelectCart: () => void;
+  clearAllSelectedCart: () => void;
   reset: () => void;
-  getCartItem: (id: Product['item_no']) => Cart | undefined;
 }
 
 const useStore = create<CartStore>((set, get) => ({
-  cartList: [],
+  cartList: new Map(),
   lastUpdatedCart: null,
   addCart: (product, count: number = 1) =>
     set((state) => {
-      const prevCartItem = state.cartList.find(({ item_no }) =>
-        isSame(item_no, product.item_no),
-      );
+      const prevCartItem = state.cartList.get(product.item_no);
       if (!prevCartItem) {
         return {
-          cartList: state.cartList.concat({ ...product, count }),
+          cartList: new Map([
+            ...state.cartList,
+            [product.item_no, { ...product, count, isSelected: true }],
+          ]),
           lastUpdatedCart: { ...product, count: 1 },
         };
       }
-      const newCartList = state.cartList.map((cart) =>
-        isSame(cart.item_no, product.item_no)
-          ? { ...cart, count: cart.count + count }
-          : cart,
-      );
-      const fintCartItem = state.cartList.find((cart) =>
-        isSame(cart.item_no, product.item_no),
-      );
       return {
-        cartList: newCartList,
-        lastUpdatedCart: fintCartItem
-          ? { ...fintCartItem, count: fintCartItem.count + count }
-          : null,
+        cartList: new Map([
+          ...state.cartList,
+          [
+            product.item_no,
+            { ...prevCartItem, count: prevCartItem.count + count },
+          ],
+        ]),
+        lastUpdatedCart: prevCartItem,
       };
     }),
   updateCart: (id, type) =>
     set((state) => {
-      const newCartList = state.cartList.map((cart) => {
-        if (isSame(cart.item_no, id)) {
-          return {
-            ...cart,
-            count: type === 'up' ? cart.count + 1 : cart.count - 1,
-          };
-        }
-        return cart;
-      });
-      return { cartList: newCartList, lastUpdatedCart: null };
+      const cartItem = state.cartList.get(id);
+      if (!cartItem) throw Error();
+      return {
+        cartList: new Map([
+          ...state.cartList,
+          [
+            id,
+            {
+              ...cartItem,
+              count: type === 'up' ? cartItem.count + 1 : cartItem.count - 1,
+            },
+          ],
+        ]),
+        lastUpdatedCart: null,
+      };
     }),
   deleteCart: (id) =>
-    set((state) => ({
-      cartList: state.cartList.filter((cart) => cart.item_no !== id),
-      lastUpdatedCart: null,
-    })),
-  reset: () => set({ cartList: [], lastUpdatedCart: null }),
+    set((state) => {
+      const newMap = new Map(state.cartList);
+      newMap.delete(id);
+      return {
+        cartList: newMap,
+        lastUpdatedCart: null,
+      };
+    }),
   getCartItem: (id) => {
     const { cartList } = get();
-    return cartList.find((cart) => cart.item_no === id);
+    return cartList.get(id);
   },
+  selectCart: (id) =>
+    set((state) => {
+      const carItem = state.cartList.get(id);
+      if (!carItem) throw Error();
+      return {
+        cartList: new Map([
+          ...state.cartList,
+          [id, { ...carItem, isSelected: !carItem?.isSelected }],
+        ]),
+        lastUpdatedCart: null,
+      };
+    }),
+  allSelectCart: () =>
+    set((state) => ({
+      cartList: new Map(
+        [...state.cartList].map(([key, value]) => [
+          key,
+          { ...value, isSelected: true },
+        ]),
+      ),
+      lastUpdatedCart: null,
+    })),
+  clearAllSelectedCart: () =>
+    set((state) => ({
+      cartList: new Map(
+        [...state.cartList].map(([key, value]) => [
+          key,
+          { ...value, isSelected: false },
+        ]),
+      ),
+      lastUpdatedCart: null,
+    })),
+  getSelectedList: () => {
+    const { cartList } = get();
+    return new Map([...cartList].filter(([, value]) => value.isSelected));
+  },
+  reset: () => set({ cartList: new Map(), lastUpdatedCart: null }),
 }));
 
 export default useStore;

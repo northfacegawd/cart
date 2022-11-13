@@ -2,7 +2,6 @@ import React from 'react';
 
 import CartItem from '@components/cart';
 import CheckBox from '@components/common/checkbox';
-import { useMapState } from '@hooks/useMapState';
 import { isSame } from '@lib/utils';
 import useStore from '@store/index';
 
@@ -15,32 +14,31 @@ import {
 } from './index.style';
 
 export default function CartItemList() {
-  const cartList = useStore((state) => state.cartList);
-  const deleteCart = useStore((state) => state.deleteCart);
-
-  const [checkedIds, { onAdd, onDelete, onClear }] = useMapState<
-    number,
-    boolean
-  >();
-
-  const onCheck = (id: number) => {
-    if (checkedIds.has(id)) return onDelete(id);
-    onAdd(id, true);
-  };
+  const {
+    cartList,
+    deleteCart,
+    selectCart,
+    getSelectedList,
+    allSelectCart,
+    clearAllSelectedCart,
+  } = useStore((state) => state);
+  const onCheck = (id: number) => selectCart(id);
+  const selectedCartList = getSelectedList();
 
   const onCheckAllItem = () => {
-    if (isSame(checkedIds.size, cartList.length)) return onClear();
-    cartList.forEach(({ item_no }) => onAdd(item_no, true));
+    if (isSame(selectedCartList.size, cartList.size)) {
+      return clearAllSelectedCart();
+    }
+    allSelectCart();
   };
 
   const onDeleteCheckedItem = () => {
-    [...checkedIds].forEach(([key]) => {
-      onDelete(key);
+    [...selectedCartList].forEach(([key]) => {
       deleteCart(key);
     });
   };
 
-  const disabled = !cartList.length;
+  const disabled = !cartList.size;
 
   return (
     <CartItemListWrapper>
@@ -48,11 +46,11 @@ export default function CartItemList() {
         <CheckBox
           name="all-check"
           onChange={onCheckAllItem}
-          checked={isSame(checkedIds.size, cartList.length) && !disabled}
+          checked={isSame(selectedCartList.size, cartList.size) && !disabled}
           disabled={disabled}
         />
         <CartActionButton onClick={onCheckAllItem} disabled={disabled}>
-          전체선택 ({checkedIds.size}/{cartList.length})
+          전체선택 ({selectedCartList.size}/{cartList.size})
         </CartActionButton>
         <ButtonDivision />
         <CartActionButton onClick={onDeleteCheckedItem} disabled={disabled}>
@@ -60,13 +58,13 @@ export default function CartItemList() {
         </CartActionButton>
       </CartActionBox>
       <ul>
-        {cartList.length <= 0 ? (
+        {cartList.size <= 0 ? (
           <CartListEmpty>장바구니에 담긴 상품이 없습니다 😢</CartListEmpty>
         ) : (
-          cartList.map((cart) => (
+          [...cartList].map(([, cart]) => (
             <CartItem
               key={cart.item_no}
-              checkedIds={checkedIds}
+              checkedIds={selectedCartList}
               onCheck={onCheck}
               {...cart}
             />

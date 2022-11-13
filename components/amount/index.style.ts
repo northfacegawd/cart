@@ -9,6 +9,7 @@ interface PriceProps {
 }
 
 export const AmountWrapper = styled.div`
+  position: relative;
   width: 100%;
   display: table;
   margin: 0 auto;
@@ -62,3 +63,29 @@ export const OrderCountBox = styled(AmountBox)`
 `;
 
 export const OrderCount = styled(Price)``;
+
+export const CouponStatusArea = styled.div`
+  position: absolute;
+  top: -35px;
+  right: 0;
+`;
+
+export const SelectCouponButton = styled.button`
+  &:not(:disabled) {
+    cursor: pointer;
+    transition: color 200ms ease-out;
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  background-color: inherit;
+  border: none;
+  font-weight: 600;
+`;
+
+export const DisableCouponMessge = styled.span`
+  color: rgba(16, 16, 16, 0.3);
+  font-size: 0.8rem;
+  font-weight: 600;
+`;

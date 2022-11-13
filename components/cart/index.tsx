@@ -41,7 +41,7 @@ export default function CartItem(props: CartItemProps) {
       <CartItemName>{cartItem.item_name}</CartItemName>
       <CounterBox>
         <Counter
-          min={0}
+          min={1}
           onDecrease={onDecrease}
           onIncrease={onIncrease}
           count={cartItem.count}
