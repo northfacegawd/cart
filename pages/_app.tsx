@@ -21,13 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp;
 
 if (typeof window === 'undefined') {
+  // TEST는 node 환경에서 동작하므로 TEST에서만 msw사용하도록 변경
   (async () => {
     const { server } = await import('@mocks/server');
     server.listen();
-  })();
-} else {
-  (async () => {
-    const { worker } = await import('@mocks/browser');
-    worker.start();
   })();
 }

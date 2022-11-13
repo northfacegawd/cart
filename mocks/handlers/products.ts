@@ -4,6 +4,9 @@ import { PRODUCTS } from '@constant/product';
 
 export const getProducts = (type?: 'error') => {
   return rest.get('/api/products', (req, res, ctx) => {
+    const page = req.params.page ?? 1;
+    console.log(page);
+
     if (type === 'error') {
       return res(ctx.status(400));
     }
