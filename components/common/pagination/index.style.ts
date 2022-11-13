@@ -43,7 +43,8 @@ export const Page = styled.li<PageProps>`
   ${({ disabled }) =>
     disabled &&
     css`
+      cursor: default;
       background-color: rgb(247, 247, 247);
-      color: var(--primary);
+      color: rgba(0, 0, 0, 0.2);
     `}
 `;
