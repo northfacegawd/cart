@@ -15,6 +15,8 @@ import useStore from '@store/index';
 import {
   AmountBox,
   AmountWrapper,
+  CouponStatusArea,
+  DisableCouponMessge,
   OrderCountBox,
   Price,
   SelectCouponButton,
@@ -27,7 +29,7 @@ export default function Amount() {
   const [selectedCoupon, setSelectedCoupon] = useState<Coupon>();
   const { data } = useQuery('coupons', fetchCoupons);
 
-  const { totalAmount, discountAmount } = useMemo(() => {
+  const { totalAmount, discountAmount, availableCartList } = useMemo(() => {
     if (!selectedCartList.size) return { totalAmount: 0, discountAmount: 0 };
     // 선택된 카트들이 담겨 있는 맵을 배열로 변환
     const convertedArray = convertMapIntoArray(selectedCartList);
@@ -53,7 +55,11 @@ export default function Amount() {
     }
     // 선택된 상품과 쿠폰 사용이 가능한 상품의 갯수가 같으면 여기서 리턴
     if (isSame(convertedArray.length, availableList.length)) {
-      return { totalAmount: availableTotal, discountAmount: discount };
+      return {
+        totalAmount: availableTotal,
+        discountAmount: discount,
+        availableCartList: availableList,
+      };
     }
     // 쿠폰을 사용하지 못 하는 상품들
     const unavailableList = convertedArray.filter(
@@ -70,6 +76,7 @@ export default function Amount() {
     return {
       totalAmount: unavailableTotal + availableTotal,
       discountAmount: discount,
+      availableCartList: availableList,
     };
   }, [selectedCartList, selectedCoupon]);
 
@@ -78,9 +85,19 @@ export default function Amount() {
   return (
     <>
       <AmountWrapper>
-        <SelectCouponButton onClick={() => setOpen(true)}>
-          쿠폰선택하기
-        </SelectCouponButton>
+        <CouponStatusArea>
+          {(availableCartList?.length ?? 0) <= 0 && (
+            <DisableCouponMessge>
+              쿠폰 사용 가능한 상품이 없습니다.
+            </DisableCouponMessge>
+          )}
+          <SelectCouponButton
+            disabled={(availableCartList?.length ?? 0) <= 0}
+            onClick={() => setOpen(true)}
+          >
+            쿠폰선택하기
+          </SelectCouponButton>
+        </CouponStatusArea>
         <OrderCountBox>
           <Subject>주문 상품 수</Subject>
           <Price>총 {numberIntoPrice(selectedCartList.size)}개</Price>

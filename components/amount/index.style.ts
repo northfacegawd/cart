@@ -64,16 +64,28 @@ export const OrderCountBox = styled(AmountBox)`
 
 export const OrderCount = styled(Price)``;
 
-export const SelectCouponButton = styled.button`
-  cursor: pointer;
+export const CouponStatusArea = styled.div`
   position: absolute;
   top: -35px;
   right: 0;
+`;
+
+export const SelectCouponButton = styled.button`
+  &:not(:disabled) {
+    cursor: pointer;
+    transition: color 200ms ease-out;
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
   background-color: inherit;
   border: none;
   font-weight: 600;
-  transition: color 200ms ease-out;
-  &:hover {
-    color: var(--primary);
-  }
+`;
+
+export const DisableCouponMessge = styled.span`
+  color: rgba(16, 16, 16, 0.3);
+  font-size: 0.8rem;
+  font-weight: 600;
 `;
