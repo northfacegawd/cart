@@ -24,3 +24,10 @@ export const ProducstWrapper = styled.div`
 export const PaginatinWrapper = styled.div`
   margin-top: 3rem;
 `;
+
+export const ErrorMesasge = styled.p`
+  margin: 5em auto 0 auto;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+`;
